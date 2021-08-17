@@ -221,7 +221,7 @@ class GCECredentialsTest extends BaseTest
 
     public function testGetLastReceivedTokenIsNullByDefault()
     {
-        $creds = new GCECredentials;
+        $creds = new GCECredentials();
         $this->assertNull($creds->getLastReceivedToken());
     }
 
@@ -235,7 +235,7 @@ class GCECredentialsTest extends BaseTest
             buildResponse(200, [], Psr7\stream_for('notexpected'))
         ]);
 
-        $creds = new GCECredentials;
+        $creds = new GCECredentials();
         $this->assertEquals($expected, $creds->getClientName($httpHandler));
 
         // call again to test cached value
@@ -251,7 +251,7 @@ class GCECredentialsTest extends BaseTest
             buildResponse(500)
         ]);
 
-        $creds = new GCECredentials;
+        $creds = new GCECredentials();
         $this->assertEquals('', $creds->getClientName($httpHandler));
     }
 
@@ -341,7 +341,7 @@ class GCECredentialsTest extends BaseTest
 
         HttpClientCache::setHttpClient($client->reveal());
 
-        $creds = new GCECredentials;
+        $creds = new GCECredentials();
         $this->assertEquals($expected, $creds->getProjectId());
 
         // call again to test cached value
@@ -361,7 +361,7 @@ class GCECredentialsTest extends BaseTest
 
         HttpClientCache::setHttpClient($client->reveal());
 
-        $creds = new GCECredentials;
+        $creds = new GCECredentials();
         $this->assertNull($creds->getProjectId());
     }
 
